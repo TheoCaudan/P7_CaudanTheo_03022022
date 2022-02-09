@@ -1,0 +1,86 @@
+/*======= INIT ========*/
+body{
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+}
+/*======= HEADER =======*/
+.logo{
+    display: block;
+    width: 52px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+header h1{
+    display: block;
+    width: 268px;
+    height: 47px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-family: "DM Sans";
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 46.87px;
+    text-align: center;
+    color: #D04F4F;
+}
+/*======= MAIN =======*/
+
+/*======= SEARCHING AREA =======*/
+#searchengine{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1240px;
+    text-indent: 5px;
+    padding-left: 15px; 
+}
+#searchengine, button.launchSearch{
+    height: 69px;
+    border-radius: 5px;
+    background-color: #E7E7E7;
+    border: solid 1px transparent;
+}
+button.launchSearch{
+    width: 69px;
+    position: relative;
+    left: 1240px;
+    top: -69px;
+}
+
+/*======== FILTERS =========*/
+.filters{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1240px;
+}
+button.ingredients, button.appareils, button.ustensils{
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    border: solid 1px transparent;
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21.6px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+button.ingredients{
+    background-color: #3282F7;
+    left: 0;
+}
+button.appareils{
+    background-color: #68D9A4;
+    left: 10px;
+}
+button.ustensils{
+    background-color: #ED6454;
+    left: 20px;
+}
