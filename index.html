@@ -24,12 +24,17 @@
     <main>
         <div class="searchingArea">
             <input type="search" id="searchengine" required min-length="2" placeholder="Rechercher une recette">
-            <button class="launchSearch"><img class="searchicon" src="img/searchIcon.svg" alt="Lancer la recherche"></button>
         </div>
         <div class="filters">
-            <button class="ingredients">Ingredients</button>
-            <button class="appareils">Appareils</button>
-            <button class="ustensils">Ustensiles</button>
+            <select class="ingredients">
+                <option value="ingredients">Ingredients</option>
+            </select>
+            <select class="appliance">
+                <option value="appliance">Appareils</option>
+            </select>
+            <select class="ustensils">
+                <option value="ustensils">Ustensiles</option>
+            </select>
         </div>
         <div class="displayRecipes"></div>
     </main>

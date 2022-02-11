@@ -42,14 +42,8 @@ header h1{
 #searchengine, button.launchSearch{
     height: 69px;
     border-radius: 5px;
-    background-color: #E7E7E7;
+    background: #E7E7E7 url(../img/searchIcon.svg) right no-repeat;
     border: solid 1px transparent;
-}
-button.launchSearch{
-    width: 69px;
-    position: relative;
-    left: 1240px;
-    top: -69px;
 }
 
 /*======== FILTERS =========*/
@@ -57,9 +51,10 @@ button.launchSearch{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 69px;
     width: 1240px;
 }
-button.ingredients, button.appareils, button.ustensils{
+.ingredients, .appliance, .ustensils{
     width: 170px;
     height: 69px;
     border-radius: 5px;
@@ -72,15 +67,18 @@ button.ingredients, button.appareils, button.ustensils{
     color: white;
     position: relative;
 }
-button.ingredients{
+.ingredients{
     background-color: #3282F7;
     left: 0;
 }
-button.appareils{
+.appliance{
     background-color: #68D9A4;
     left: 10px;
 }
-button.ustensils{
+.ustensils{
     background-color: #ED6454;
     left: 20px;
+}
+.filters option{
+    height: 69px;
 }
