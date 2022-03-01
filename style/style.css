@@ -82,3 +82,20 @@ header h1{
 .filters option{
     height: 69px;
 }
+
+/*===== CARDS =====*/
+
+.displayRecipes{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 50px;
+}
+.gridRecipesWrapper{
+    width: 380px;
+    height: 364px;
+    overflow: hidden;
+}
+.recipeImg{
+    width: 380px;
+    height: 178px;
+}

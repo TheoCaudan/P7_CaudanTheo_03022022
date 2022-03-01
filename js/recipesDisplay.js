@@ -1,63 +1,104 @@
-function displayMain(id, name, servings, ingredients, time, description, appliance, ustensils) {
-    const displayArea = document.querySelector('.displayRecipes')
+import recipes from './recipes.js'
 
-    const recipes = document.createElement('div')
-    recipes.className
+let recipeData = {}
+let ingredientsData = {}
+
+function displayIngredients(
+    ingredient,
+    quantity,
+    unit,
+) {
+
+    const list = document.querySelector('.recipeIngredients')
+
+    const subList = document.createElement('ul')
+    subList.className = 'listOfIngredients'
+    
+    list.append(subList)
+
+    const subListItems = document.createElement('li')
+    subListItems.textContent = '' + ingredient + ': ' + quantity + unit
+
+    subList.append(subListItems)
+
 }
+function displayMain(
+  id,
+  name,
+  ingredients,
+  time,
+  description,
+  appliance,
+  ustensils,
+) {
+  // Display All Recipes
+  const displayArea = document.querySelector('.displayRecipes')
 
-(async () => {
-    await fetch('./recipes.js')
-    .then((data) => data.json())
-    .then((result) => {
-        const parameter = new URLSearchParams(window.location.search)
-        const recipeId = parameter.get('id')
-        let recipeData = {}
+  const recipesCard = document.createElement('article')
+  recipesCard.className = 'gridRecipesWrapper'
+  recipesCard.ariaLabel = 'Contenu Principal'
+  recipesCard.id = 'gridRecipesWrapper'
 
-        const parameter2 = new URLSearchParams(document.location.search)
-        recipeData = parameter2.get(
-            'id',
-            'name',
-            'servings',
-            'ingredients',
-            'time',
-            'description',
-            'appliance',
-            'ustensils',
-        )
+  displayArea.append(recipesCard)
 
-        for (let i = 0; i < result.recipes.length; i++) {
-            if (result.recipes[i].id == recipeId) {
-                displayMain(
-                    result.recipes[i].id,
-                    result.recipes[i].name,
-                    result.recipes[i].servings,
-                    result.recipes[i].ingredients,
-                    result.recipes[i].time,
-                    result.recipes[i].description,
-                    result.recipes[i].appliance,
-                    result.recipes[i].ustensils,
-                )
-                console.log(recipeData)
-            }
-        }
+  const recipe = document.createElement('div')
+  recipe.className = 'gridRecipeId'
+  recipe.id = 'gridRecipe' + id
 
-        let ingredientsData = {}
+  recipesCard.append(recipe)
 
-        const parameter3 = new URLSearchParams(document.location.search)
-        ingredientsData = parameter3.get(
-            'ingredient',
-            'quantity',
-            'unit',
-        )
+  const recipeImg = document.createElement('img')
+  recipeImg.className = 'recipeImg'
+  recipeImg.id = 'recipeImg' + name
 
-        for (let i = 0; i < result.ingredients.length; i++) {
-            if (result.ingredients[i].id = recipeId) {
-                ingredientsData = result.ingredients[i]
-                console.log(ingredientsData)
-            }
-        }
-    })
+  recipe.append(recipeImg)
 
-    displayMain();
+  const recipeTitle = document.createElement('h1')
+  recipeTitle.className = 'recipeName'
+  recipeTitle.textContent = '' + name
+  recipeTitle.id = 'recipeName' + id
 
-}) ()
+  recipe.append(recipeTitle)
+
+  const recipeIngredients = document.createElement('div')
+  recipeIngredients.className = 'recipeIngredients'
+  recipeIngredients.id = 'recipeIngredients' + id
+
+  recipe.append(recipeIngredients)
+
+  const recipeTime = document.createElement('span')
+  recipeTime.className = 'recipeTime'
+
+  recipeTime.innerHTML = '<i class="fa-regular fa-clock"></i>' + time
+  recipeTime.id = 'recipeTime' + id
+
+  recipe.append(recipeTime)
+
+  const recipeText = document.createElement('p')
+  recipeText.className = 'recipeText'
+  recipeText.textContent = '' + description
+  recipeText.id = 'recipeText' + id
+
+  recipe.append(recipeText)
+}
+//displaySearched(userInput);
+//displayFiltered(filter);
+for (let i = 0; i < recipes.length; i++) {
+  recipeData = recipes[i]
+  displayMain(
+    recipes[i].id,
+    recipes[i].name,
+    recipes[i].ingredients,
+    recipes[i].time,
+    recipes[i].description,
+    recipes[i].appliance,
+    recipes[i].ustensils,
+  )
+}
+for (let i = 0; i < recipes.ingredients.length; i++) {
+    displayIngredients(
+    recipes[i].ingredients.ingredient,
+    recipes[i].ingredients.quantity,
+    recipes[i].ingredients.unit,
+  )
+}
