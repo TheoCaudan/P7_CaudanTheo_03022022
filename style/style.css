@@ -91,6 +91,7 @@ header h1{
     column-gap: 50px;
 }
 .gridRecipesWrapper{
+    margin-top: 50px;
     width: 380px;
     height: 364px;
     overflow: hidden;
@@ -98,4 +99,21 @@ header h1{
 .recipeImg{
     width: 380px;
     height: 178px;
+    background-color: #C7BEBE;
+    border-radius: 5px;
+}
+.recipeTime{
+    background: white url(../img/timeIcon.svg) left no-repeat;
+    width: 76px;
+    padding-left: 25px;
+    position: relative;
+    left: 320px;
+    top: -42px;
+}
+h1.recipeName{
+    max-width: 80%;
+    font-size: 18px;
+    font-family: "Lato";
+    font-weight: 400;
+    line-height: 21.6px;
 }
