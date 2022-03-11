@@ -24,7 +24,7 @@ function displayIngredients(
     subListItems.textContent = ingredientData[i]
   }
   const subList = document.getElementById('listOfIngredients' + id)
-  console.log('id = ' +id)
+  console.log('id = ' + id)
   subList.append(subListItems)
   }
 }
@@ -38,7 +38,7 @@ function displayMain(
   const recipesCard = document.createElement('article')
   recipesCard.className = 'gridRecipesWrapper'
   recipesCard.ariaLabel = 'Contenu Principal'
-  recipesCard.id = 'gridRecipesWrapper'
+  recipesCard.id = 'gridRecipesWrapper' + recipeData.id
 
   displayArea.append(recipesCard)
 
@@ -50,7 +50,7 @@ function displayMain(
 
   const recipeImg = document.createElement('img')
   recipeImg.className = 'recipeImg'
-  recipeImg.id = 'recipeImg' + recipeData.name
+  recipeImg.id = 'recipeImg' + recipeData.id
 
   recipe.append(recipeImg)
 
@@ -73,6 +73,18 @@ function displayMain(
 
   recipeIngredients.append(subList)
 
+  for(let i = 0; i < recipeData.ingredients.length; i++){
+    const subListItems = document.createElement('li')
+    if(recipeData.ingredients[i].unit){
+      subListItems.textContent = recipeData.ingredients[i].ingredient + " : " + recipeData.ingredients[i].quantity + " " + recipeData.ingredients[i].unit
+    } else if(recipeData.ingredients[i].quantity){
+      subListItems.textContent = recipeData.ingredients[i].ingredient + " : " + recipeData.ingredients[i].quantity
+    } else if(recipeData.ingredients[i].ingredient){
+      subListItems.textContent = recipeData.ingredients[i].ingredient
+    }
+    subList.append(subListItems)
+  }
+
   const recipeTime = document.createElement('span')
   recipeTime.className = 'recipeTime'
 
@@ -88,30 +100,13 @@ function displayMain(
 
   recipe.append(recipeText)
 }
-function ingredientsLoop(ingredients, id){
-  for(let j = 0; j < ingredients.length; j++){
-    ingredientsData = ingredients[j]
-    ingredientData = ingredients[j].ingredient
-    quantityData = ingredients[j].quantity
-    unitData = ingredients[j].unit
-    displayIngredients(
-    ingredientsData,
-    ingredientData,
-    quantityData,
-    unitData,
-    id,
-    )
-  }
-}
+
 //displaySearched(userInput);
 //displayFiltered(filter);
+
 for (let i = 0; i < recipes.length; i++) {
   recipeData = recipes[i]
   displayMain(
     recipeData,
-  )
-  ingredientsLoop(
-    recipeData.ingredients, 
-    recipeData.id,
   )
 }
