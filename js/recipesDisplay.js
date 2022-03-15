@@ -1,33 +1,6 @@
 import recipes from './recipes.js'
 
 var recipeData = {}
-var ingredientsData = {}
-
-var ingredientData = []
-var quantityData = []
-var unitData = []
-
-function displayIngredients(
-    ingredientsData,
-    ingredientData,
-    quantityData,
-    unitData,
-    id,
-) {
-  for (let i = 0; i < ingredientsData.length; i++){
-  const subListItems = document.createElement('li')
-  if(ingredientsData[i].unit){
-  subListItems.textContent = ingredientData[i] + " : " + quantityData[i] + " " + unitData[i]
-  } else if(ingredientsData[i].quantity){
-    subListItems.textContent = ingredientData[i] + " : " + quantityData[i]
-  } else if(ingredientsData[i].ingredient){
-    subListItems.textContent = ingredientData[i]
-  }
-  const subList = document.getElementById('listOfIngredients' + id)
-  console.log('id = ' + id)
-  subList.append(subListItems)
-  }
-}
 
 function displayMain(
   recipeData,
@@ -100,9 +73,6 @@ function displayMain(
 
   recipe.append(recipeText)
 }
-
-//displaySearched(userInput);
-//displayFiltered(filter);
 
 for (let i = 0; i < recipes.length; i++) {
   recipeData = recipes[i]
