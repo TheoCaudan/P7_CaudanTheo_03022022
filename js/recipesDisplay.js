@@ -2,6 +2,39 @@ import recipes from './recipes.js'
 
 var recipeData = {}
 
+function filters(recipeData){
+/* Get appliances, ustensils and ingredients and throw everything in Sets to prevent duplicates  */
+const ingredientsSet = new Set()
+for(let i = 0; i < recipeData.ingredients.length; i++){
+  ingredientsSet.add(recipeData.ingredients[i].ingredient)
+}
+const appliancesSet = new Set()
+appliancesSet.add(recipeData.appliance)
+
+const ustensilsSet = new Set()
+ustensilsSet.add(recipeData.ustensils)
+
+/* Convert the Sets into Arrays */
+var ingredientsArray = Array.from(ingredientsSet)
+var applianceArray = Array.from(appliancesSet)
+var ustensilsArray = Array.from(ustensilsSet)
+
+/* Display filters from the Array */
+console.log('ingredientsArray : ' + ingredientsArray)
+
+const ingredientsFilter = document.querySelector('#ingredientsList')
+for(let i = 0; i < ingredientsArray.length; i++){
+ingredientsFilter.innerHTML += '<option value="' + ingredientsArray[i] + '">' + ingredientsArray[i] + '</option>'
+}
+
+console.log(ingredientsSet)
+console.log('applianceArray : ' + applianceArray)
+console.log(appliancesSet)
+console.log('ustensilsArray : ' + ustensilsArray)
+console.log(ustensilsSet)
+console.log(ingredientsArray.length, applianceArray.length, ustensilsArray.length)
+}
+
 function displayMain(
   recipeData,
 ) {
@@ -76,7 +109,10 @@ function displayMain(
 
 for (let i = 0; i < recipes.length; i++) {
   recipeData = recipes[i]
+
   displayMain(
     recipeData,
   )
+  filters(recipeData)
 }
+
