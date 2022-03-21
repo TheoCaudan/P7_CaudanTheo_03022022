@@ -2,37 +2,20 @@ import recipes from './recipes.js'
 
 var recipeData = {}
 
+const ingredientsSet = new Set()
+const appliancesSet = new Set()
+const ustensilsSet = new Set()
+
 function filters(recipeData){
 /* Get appliances, ustensils and ingredients and throw everything in Sets to prevent duplicates  */
-const ingredientsSet = new Set()
-for(let i = 0; i < recipeData.ingredients.length; i++){
-  ingredientsSet.add(recipeData.ingredients[i].ingredient)
-}
-const appliancesSet = new Set()
-appliancesSet.add(recipeData.appliance)
 
-const ustensilsSet = new Set()
-ustensilsSet.add(recipeData.ustensils)
-
-/* Convert the Sets into Arrays */
-var ingredientsArray = Array.from(ingredientsSet)
-var applianceArray = Array.from(appliancesSet)
-var ustensilsArray = Array.from(ustensilsSet)
-
-/* Display filters from the Array */
-console.log('ingredientsArray : ' + ingredientsArray)
-
-const ingredientsFilter = document.querySelector('#ingredientsList')
-for(let i = 0; i < ingredientsArray.length; i++){
-ingredientsFilter.innerHTML += '<option value="' + ingredientsArray[i] + '">' + ingredientsArray[i] + '</option>'
-}
-
-console.log(ingredientsSet)
-console.log('applianceArray : ' + applianceArray)
-console.log(appliancesSet)
-console.log('ustensilsArray : ' + ustensilsArray)
-console.log(ustensilsSet)
-console.log(ingredientsArray.length, applianceArray.length, ustensilsArray.length)
+  for(let i = 0; i < recipeData.ingredients.length; i++){
+    ingredientsSet.add(recipeData.ingredients[i].ingredient.toLowerCase())
+  }
+  for(let i = 0; i < recipeData.ustensils.length; i++){
+    ustensilsSet.add(recipeData.ustensils[i].toLowerCase())
+  }
+  appliancesSet.add(recipeData.appliance.toLowerCase())
 }
 
 function displayMain(
@@ -78,7 +61,7 @@ function displayMain(
   subList.id = 'listOfIngredients' + recipeData.id
 
   recipeIngredients.append(subList)
-
+  
   for(let i = 0; i < recipeData.ingredients.length; i++){
     const subListItems = document.createElement('li')
     if(recipeData.ingredients[i].unit){
@@ -90,7 +73,7 @@ function displayMain(
     }
     subList.append(subListItems)
   }
-
+  
   const recipeTime = document.createElement('span')
   recipeTime.className = 'recipeTime'
 
@@ -115,4 +98,19 @@ for (let i = 0; i < recipes.length; i++) {
   )
   filters(recipeData)
 }
-
+const ingredientsArray = Array.from(ingredientsSet)
+const ingredientsFilter = document.querySelector('#ingredientsList')
+for(let i = 0; i < ingredientsArray.length; i++){
+  ingredientsFilter.innerHTML += '<option value="ingredient"' + i + '">' + ingredientsArray[i] + '</option>'
+}
+const appliancesArray = Array.from(appliancesSet)
+const appliancesFilter = document.querySelector('#applianceList')
+for(let i = 0; i < appliancesArray.length; i++){
+  appliancesFilter.innerHTML += '<option value="appliance"' + i + '">' + appliancesArray[i] + '</option>'
+}
+const ustensilsArray = Array.from(ustensilsSet)
+const ustensilsFilter = document.querySelector('#ustensilsList')
+for(let i = 0; i < ustensilsArray.length; i++){
+  ustensilsFilter.innerHTML += '<option value="ustensil"' + i + '">' + ustensilsArray[i] + '</option>'
+}
+console.log(ingredientsSet, appliancesSet, ustensilsSet)
