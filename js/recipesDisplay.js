@@ -7,7 +7,7 @@ const appliancesSet = new Set()
 const ustensilsSet = new Set()
 
 function filters(recipeData){
-/* Get appliances, ustensils and ingredients and throw everything in Sets to prevent duplicates  */
+/* Get appliances, ustensils and ingredients convert to lower case and throw everything in Sets to prevent duplicates  */
 
   for(let i = 0; i < recipeData.ingredients.length; i++){
     ingredientsSet.add(recipeData.ingredients[i].ingredient.toLowerCase())
@@ -91,8 +91,12 @@ function displayMain(
 }
 
 for (let i = 0; i < recipes.length; i++) {
-  recipeData = recipes[i]
-
+  /* const isSearchedDone = document.queryselector('#searchengine') */
+  /* if(isSearchedDone == ""){ */
+    recipeData = recipes[i]
+  /* } else { */
+    // recipeData is equal to data from filters and/or search (recipes.contains(filter picked and or searched typed))
+  /* } */
   displayMain(
     recipeData,
   )
@@ -113,4 +117,3 @@ const ustensilsFilter = document.querySelector('#ustensilsList')
 for(let i = 0; i < ustensilsArray.length; i++){
   ustensilsFilter.innerHTML += '<option value="ustensil"' + i + '">' + ustensilsArray[i] + '</option>'
 }
-console.log(ingredientsSet, appliancesSet, ustensilsSet)
