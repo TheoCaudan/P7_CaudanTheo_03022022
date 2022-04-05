@@ -1,4 +1,4 @@
-import recipes from "./recipes.js"
+import recipes from './recipes.js'
 
 var recipeData = {}
 var tab = []
@@ -7,7 +7,7 @@ const ingredientsSet = new Set()
 const appliancesSet = new Set()
 const ustensilsSet = new Set()
 
-function search(key){
+function search(key) {
   const nodesName = document.querySelectorAll('.recipeName')
   const nodesText = document.querySelectorAll('.recipeText')
   const nodesIngredients = document.querySelectorAll('.listOfIngredients')
@@ -18,20 +18,20 @@ function search(key){
 
   const constructionSet = new Set()
 
-  nodesNameArr.forEach(element => {
-    if(element.innerHTML.toLowerCase().includes(key.toLowerCase())){
+  nodesNameArr.forEach((element) => {
+    if (element.innerHTML.toLowerCase().includes(key.toLowerCase())) {
       constructionSet.add(element.parentElement)
     }
   })
 
-  nodesTextArr.forEach(element => {
-    if(element.innerHTML.toLowerCase().includes(key.toLowerCase())){
+  nodesTextArr.forEach((element) => {
+    if (element.innerHTML.toLowerCase().includes(key.toLowerCase())) {
       constructionSet.add(element.parentElement)
     }
   })
 
-  nodesIngredientsArr.forEach(element => {
-    if(element.innerHTML.toLowerCase().includes(key.toLowerCase())){
+  nodesIngredientsArr.forEach((element) => {
+    if (element.innerHTML.toLowerCase().includes(key.toLowerCase())) {
       constructionSet.add(element.parentElement.parentElement)
     }
   })
@@ -39,8 +39,8 @@ function search(key){
   const constructionArr = Array.from(constructionSet)
 
   const displayArea = document.querySelector('.displayRecipes')
-  displayArea.innerHTML = ""
-  constructionArr.forEach(el => {
+  displayArea.innerHTML = ''
+  constructionArr.forEach((el) => {
     displayArea.append(el)
   })
 }
@@ -59,122 +59,119 @@ function filters(arr) {
 function displayMain(arr) {
   // Display All Recipes
 
-  const recipesCard = document.createElement("article");
-  recipesCard.className = "gridRecipesWrapper";
-  recipesCard.ariaLabel = "Contenu Principal";
-  recipesCard.id = "gridRecipesWrapper" + arr.id;
+  const recipesCard = document.createElement('article')
+  recipesCard.className = 'gridRecipesWrapper'
+  recipesCard.ariaLabel = 'Contenu Principal'
+  recipesCard.id = 'gridRecipesWrapper' + arr.id
 
-  displayArea.append(recipesCard);
+  displayArea.append(recipesCard)
 
-  const recipe = document.createElement("div");
-  recipe.className = "gridRecipeId";
-  recipe.id = "gridRecipe" + arr.id;
+  const recipe = document.createElement('div')
+  recipe.className = 'gridRecipeId'
+  recipe.id = 'gridRecipe' + arr.id
 
-  recipesCard.append(recipe);
+  recipesCard.append(recipe)
 
-  const recipeImg = document.createElement("img");
-  recipeImg.className = "recipeImg";
-  recipeImg.id = "recipeImg" + arr.id;
+  const recipeImg = document.createElement('img')
+  recipeImg.className = 'recipeImg'
+  recipeImg.id = 'recipeImg' + arr.id
 
-  recipe.append(recipeImg);
+  recipe.append(recipeImg)
 
-  const recipeTitle = document.createElement("h1");
-  recipeTitle.className = "recipeName";
-  recipeTitle.textContent = "" + arr.name;
-  recipeTitle.id = "recipeName" + arr.id;
+  const recipeTitle = document.createElement('h1')
+  recipeTitle.className = 'recipeName'
+  recipeTitle.textContent = '' + arr.name
+  recipeTitle.id = 'recipeName' + arr.id
 
-  recipe.append(recipeTitle);
+  recipe.append(recipeTitle)
 
-  const recipeIngredients = document.createElement("div");
-  recipeIngredients.className = "recipeIngredients";
-  recipeIngredients.id = "recipeIngredients" + arr.id;
+  const recipeIngredients = document.createElement('div')
+  recipeIngredients.className = 'recipeIngredients'
+  recipeIngredients.id = 'recipeIngredients' + arr.id
 
-  recipe.append(recipeIngredients);
+  recipe.append(recipeIngredients)
 
-  const subList = document.createElement("ul");
-  subList.className = "listOfIngredients";
-  subList.id = "listOfIngredients" + arr.id;
+  const subList = document.createElement('ul')
+  subList.className = 'listOfIngredients'
+  subList.id = 'listOfIngredients' + arr.id
 
-  recipeIngredients.append(subList);
+  recipeIngredients.append(subList)
 
   for (let i = 0; i < arr.ingredients.length; i++) {
-    const subListItems = document.createElement("li");
+    const subListItems = document.createElement('li')
     if (arr.ingredients[i].unit) {
       subListItems.textContent =
         arr.ingredients[i].ingredient +
-        " : " +
+        ' : ' +
         arr.ingredients[i].quantity +
-        " " +
-        arr.ingredients[i].unit;
+        ' ' +
+        arr.ingredients[i].unit
     } else if (arr.ingredients[i].quantity) {
       subListItems.textContent =
-        arr.ingredients[i].ingredient +
-        " : " +
-        arr.ingredients[i].quantity;
+        arr.ingredients[i].ingredient + ' : ' + arr.ingredients[i].quantity
     } else if (arr.ingredients[i].ingredient) {
-      subListItems.textContent = arr.ingredients[i].ingredient;
+      subListItems.textContent = arr.ingredients[i].ingredient
     }
-    subList.append(subListItems);
+    subList.append(subListItems)
   }
 
-  const recipeTime = document.createElement("span");
-  recipeTime.className = "recipeTime";
+  const recipeTime = document.createElement('span')
+  recipeTime.className = 'recipeTime'
 
-  recipeTime.innerHTML = "" + arr.time;
-  recipeTime.id = "recipeTime" + arr.id;
+  recipeTime.innerHTML = '' + arr.time
+  recipeTime.id = 'recipeTime' + arr.id
 
-  recipe.append(recipeTime);
+  recipe.append(recipeTime)
 
-  const recipeText = document.createElement("p");
-  recipeText.className = "recipeText";
-  recipeText.textContent = "" + arr.description;
-  recipeText.id = "recipeText" + arr.id;
+  const recipeText = document.createElement('p')
+  recipeText.className = 'recipeText'
+  recipeText.textContent = '' + arr.description
+  recipeText.id = 'recipeText' + arr.id
 
-  recipe.append(recipeText);
+  recipe.append(recipeText)
 }
 
-function displayFilterOptions(){
-  const ingredientsArray = Array.from(ingredientsSet);
-  const ingredientsFilter = document.querySelector("#ingredientsList");
+function displayFilterOptions() {
+  const ingredientsArray = Array.from(ingredientsSet)
+  const ingredientsFilter = document.querySelector('#ingredientsList')
   for (let i = 0; i < ingredientsArray.length; i++) {
     ingredientsFilter.innerHTML +=
-      '<option value="ingredient' + i + '">' + ingredientsArray[i] + "</option>";
+      '<option value="ingredient' + i + '">' + ingredientsArray[i] + '</option>'
   }
-  const appliancesArray = Array.from(appliancesSet);
-  const appliancesFilter = document.querySelector("#applianceList");
+  const appliancesArray = Array.from(appliancesSet)
+  const appliancesFilter = document.querySelector('#applianceList')
   for (let i = 0; i < appliancesArray.length; i++) {
     appliancesFilter.innerHTML +=
-      '<option value="appliance' + i + '">' + appliancesArray[i] + "</option>";
+      '<option value="appliance' + i + '">' + appliancesArray[i] + '</option>'
   }
-  const ustensilsArray = Array.from(ustensilsSet);
-  const ustensilsFilter = document.querySelector("#ustensilsList");
+  const ustensilsArray = Array.from(ustensilsSet)
+  const ustensilsFilter = document.querySelector('#ustensilsList')
   for (let i = 0; i < ustensilsArray.length; i++) {
     ustensilsFilter.innerHTML +=
-      '<option value="ustensil' + i + '">' + ustensilsArray[i] + "</option>";
+      '<option value="ustensil' + i + '">' + ustensilsArray[i] + '</option>'
   }
 }
 
-const displayArea = document.querySelector(".displayRecipes")
+const displayArea = document.querySelector('.displayRecipes')
 
 for (let i = 0; i < recipes.length; i++) {
-  recipeData = recipes[i];
-  displayMain(recipeData);
-  filters(recipeData);
+  recipeData = recipes[i]
+  displayMain(recipeData)
+  filters(recipeData)
 }
 displayFilterOptions()
 
-document.querySelector('#searchengine').addEventListener("keyup", function(e) {
+document.querySelector('#searchengine').addEventListener('keyup', function (e) {
   let val = e.target.value
   console.log(val)
-  if(val != "" && val.length > 2){
-    search(val)   
-  }
-  else {
-    document.querySelector('.displayRecipes').innerHTML = ""
+  if (val.length > 2) {
+    search(val)
+  } else {
+    document.querySelector('.displayRecipes').innerHTML = ''
     for (let i = 0; i < recipes.length; i++) {
-      recipeData = recipes[i];
-      displayMain(recipeData);
-      filters(recipeData);
+      recipeData = recipes[i]
+      displayMain(recipeData)
+      filters(recipeData)
     }
     displayFilterOptions()
   }
