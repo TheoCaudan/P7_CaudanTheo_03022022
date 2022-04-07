@@ -1,20 +1,19 @@
 import recipes from './recipes.js'
 
-var currentRecipe = []
+let currentRecipe = []
 
 const ingredientsSet = new Set()
 const appliancesSet = new Set()
 const ustensilsSet = new Set()
 
 function search(key) {
+  currentRecipe = []
   for(let i = 0; i < recipes.length; i++){
     if(recipes[i].name.toLowerCase().includes(key.toLowerCase())){
       currentRecipe.push(recipes[i])
-    }
-    if(recipes[i].description.toLowerCase().includes(key.toLowerCase())){
+    } else if(recipes[i].description.toLowerCase().includes(key.toLowerCase())){
       currentRecipe.push(recipes[i])
-    }
-    for(let j = 0; j < recipes[i].ingredients.length; j++){
+    } else for(let j = 0; j < recipes[i].ingredients.length; j++){
       if(recipes[i].ingredients[j].ingredient.toLowerCase().includes(key.toLowerCase())){
         currentRecipe.push(recipes[i])
       }
@@ -28,6 +27,9 @@ function search(key) {
 
 function filters(arr) {
   /* Get appliances, ustensils and ingredients converted to lower case and throw everything in Sets to prevent duplicates  */
+  ingredientsSet.clear()
+  ustensilsSet.clear()
+  appliancesSet.clear()
   for(let k = 0; k < arr.length; k++){
     for (let i = 0; i < arr[k].ingredients.length; i++) {
       ingredientsSet.add(arr[k].ingredients[i].ingredient.toLowerCase())
@@ -115,18 +117,27 @@ function displayMain(arr) {
 function displayFilterOptions() {
   const ingredientsArray = Array.from(ingredientsSet)
   const ingredientsFilter = document.querySelector('#ingredientsList')
+
+  ingredientsFilter.innerHTML = '<option value="" hidden selected>Ingredients</option>'
+  
   for (let i = 0; i < ingredientsArray.length; i++) {
     ingredientsFilter.innerHTML +=
       '<option value="ingredient' + i + '">' + ingredientsArray[i] + '</option>'
   }
   const appliancesArray = Array.from(appliancesSet)
   const appliancesFilter = document.querySelector('#applianceList')
+
+  appliancesFilter.innerHTML = '<option value="" hidden selected>Appareils</option>'
+
   for (let i = 0; i < appliancesArray.length; i++) {
     appliancesFilter.innerHTML +=
       '<option value="appliance' + i + '">' + appliancesArray[i] + '</option>'
   }
   const ustensilsArray = Array.from(ustensilsSet)
   const ustensilsFilter = document.querySelector('#ustensilsList')
+
+  ustensilsFilter.innerHTML = '<option value="" hidden selected>Ustensiles</option>'
+
   for (let i = 0; i < ustensilsArray.length; i++) {
     ustensilsFilter.innerHTML +=
       '<option value="ustensil' + i + '">' + ustensilsArray[i] + '</option>'
@@ -141,7 +152,6 @@ displayFilterOptions()
 
 document.querySelector('#searchengine').addEventListener('keyup', function (e) {
   let val = e.target.value
-  console.log(val)
   if (val.length > 2) {
     search(val)
   } else {
