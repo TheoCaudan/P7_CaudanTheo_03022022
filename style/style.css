@@ -161,3 +161,25 @@ p.recipeText{
     grid-area: area5;
     overflow: hidden;
 }
+
+/*===== FILTERS PARAMS =====*/
+
+.filterParamIng, .filterParamApp, .filterParamUst{
+    width: 107px;
+    height: 37px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+.filterParamIng{
+    background-color: #3282F7;
+}
+
+.filterParamApp{
+    background-color: #68D9A4;
+}
+
+.filterParamUst{
+    background-color: #ED6454;
+}

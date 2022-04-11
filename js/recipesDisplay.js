@@ -119,28 +119,63 @@ function displayFilterOptions() {
   const ingredientsFilter = document.querySelector('#ingredientsList')
 
   ingredientsFilter.innerHTML = '<option value="" hidden selected>Ingredients</option>'
+  ingredientsFilter.onclick = function () {
+    const filterParams = document.querySelector('#filterParams')
+    const filterParamIng = document.createElement('div')
+    filterParamIng.className = 'filterParamIng'
+    filterParamIng.textContent = ingredientsFilter.value
+    filterParamIng.onclick = function () {
+      this.remove()
+    }
+    filterParams.append(filterParamIng)
+
+  }
   
   for (let i = 0; i < ingredientsArray.length; i++) {
     ingredientsFilter.innerHTML +=
-      '<option value="ingredient' + i + '">' + ingredientsArray[i] + '</option>'
+      '<option value="'+ ingredientsArray[i] + '">' + ingredientsArray[i] + '</option>'
   }
   const appliancesArray = Array.from(appliancesSet)
   const appliancesFilter = document.querySelector('#applianceList')
 
   appliancesFilter.innerHTML = '<option value="" hidden selected>Appareils</option>'
+  appliancesFilter.onclick = function () {
+    const filterParams = document.querySelector('#filterParams')
+    const filterParamApp = document.createElement('div')
+    filterParamApp.className = 'filterParamApp'
+    filterParamApp.textContent = appliancesFilter.value
+    filterParamApp.onclick = function () {
+      this.remove()
+    }
+
+    filterParams.append(filterParamApp)
+
+  }
 
   for (let i = 0; i < appliancesArray.length; i++) {
     appliancesFilter.innerHTML +=
-      '<option value="appliance' + i + '">' + appliancesArray[i] + '</option>'
+      '<option value="' + appliancesArray[i] + '">' + appliancesArray[i] + '</option>'
   }
   const ustensilsArray = Array.from(ustensilsSet)
   const ustensilsFilter = document.querySelector('#ustensilsList')
 
   ustensilsFilter.innerHTML = '<option value="" hidden selected>Ustensiles</option>'
+  ustensilsFilter.onclick = function () {
+    const filterParams = document.querySelector('#filterParams')
+    const filterParamUst = document.createElement('div')
+    filterParamUst.className = 'filterParamUst'
+    filterParamUst.textContent = ustensilsFilter.value
+    filterParamUst.onclick = function () {
+      this.remove()
+    }
+
+    filterParams.append(filterParamUst)
+
+  }
 
   for (let i = 0; i < ustensilsArray.length; i++) {
     ustensilsFilter.innerHTML +=
-      '<option value="ustensil' + i + '">' + ustensilsArray[i] + '</option>'
+      '<option value="' + ustensilsArray[i] + '">' + ustensilsArray[i] + '</option>'
   }
 }
 
