@@ -177,6 +177,9 @@ p.recipeText{
     position: relative;
     top: 25px;
 }
+.filterParamIng:hover, .filterParamApp:hover, .filterParamUst:hover{
+    cursor: pointer;
+}
 
 .filterParamIng{
     background-color: #3282F7;
