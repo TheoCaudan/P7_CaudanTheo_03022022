@@ -1,16 +1,16 @@
 import recipes from "./recipes.js";
 
 let currentRecipe = [];
-/* let arrFiltered = []; */
+let arrFiltered = []; 
 
 const ingredientsSet = new Set();
 const appliancesSet = new Set();
 const ustensilsSet = new Set();
 
-/* let currentFilters = document.querySelector("#filterParams");
+let currentFilters = document.querySelector('#filterParams');
 let ingFilter = document.querySelectorAll('.filterParamIng');
 let appFilter = document.querySelectorAll('.filterParamApp');
-let ustFilter = document.querySelectorAll('.filterParamUst'); */
+let ustFilter = document.querySelectorAll('.filterParamUst');
 
 let search = (key) => {
   currentRecipe = [];
@@ -32,10 +32,10 @@ let search = (key) => {
         }
       }
   }
-  /* filterOptions(currentRecipe); */
+  filterOptions(currentRecipe); 
   document.querySelector(".displayRecipes").innerHTML = "";
-  displayMain(currentRecipe);
-  filters(currentRecipe);
+  displayMain(arrFiltered); //if filterOptions() on then arrFiltered instead of currentRecipe 
+  filters(arrFiltered); // if filterOptions() on then put arrFiltered instead of currentRecipe
   displayFilterOptions();
 };
 
@@ -55,7 +55,7 @@ let filters = (arr) => {
   }
 };
 
-/* let filterOptions = (currentRecipe) => {
+let filterOptions = (currentRecipe) => {
   arrFiltered = [];
   if (currentFilters.innerText) {
     for(let m = 0; m < appFilter.length; m++) {
@@ -71,23 +71,21 @@ let filters = (arr) => {
             ) {
               arrFiltered.push(currentRecipe[i]);
             } else
-              for (let j = 0; j < [i].ustensils.length; j++) {
                 if (
-                  arr[i].ustensils[j]
+                  currentRecipe[i].ustensils
                     .toLowerCase()
                     .includes(ustFilter[m].innerText)
                 ) {
-                  arrFiltered.push(arr[i]);
+                  arrFiltered.push(currentRecipe[i]);
                 }
-              }
           }
       }
     }
   } else
-    for (let i = 0; i < arr.length; i++) {
-      arrFiltered.push(arr[i]);
+    for (let i = 0; i < currentRecipe.length; i++) {
+      arrFiltered.push(currentRecipe[i]);
     }
-}; */
+}; 
 
 let displayMain = (arr) => {
   for (let i = 0; i < arr.length; i++) {
@@ -178,8 +176,8 @@ let displayFilterOptions = () => {
       const filterParamIng = document.createElement("div");
       filterParamIng.className = "filterParamIng";
       filterParamIng.textContent = ingredientsFilter.value;
-      filterParamIng.onclick = () => {
-        this.remove();
+      filterParamIng.onclick = (e) => {
+        e.target.remove();
       };
       filterParams.append(filterParamIng);
     }
@@ -204,8 +202,8 @@ let displayFilterOptions = () => {
       const filterParamApp = document.createElement("div");
       filterParamApp.className = "filterParamApp";
       filterParamApp.textContent = appliancesFilter.value;
-      filterParamApp.onclick = () => {
-        this.remove();
+      filterParamApp.onclick = (e) => {
+        e.target.remove();
       };
       filterParams.append(filterParamApp);
     }
@@ -230,8 +228,8 @@ let displayFilterOptions = () => {
       const filterParamUst = document.createElement("div");
       filterParamUst.className = "filterParamUst";
       filterParamUst.textContent = ustensilsFilter.value;
-      filterParamUst.onclick = () => {
-        this.remove();
+      filterParamUst.onclick = (e) => {
+        e.target.remove();
       };
       filterParams.append(filterParamUst);
     }
