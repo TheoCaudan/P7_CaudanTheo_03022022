@@ -267,9 +267,11 @@ let displayUstensilTags = () => {
   }
 }
 
-let displayDropdown = () => {
+/*
+  let displayDropdown = () => {
 
-}
+  }
+*/
 
 displayMain(recipes)
 filters(recipes)
