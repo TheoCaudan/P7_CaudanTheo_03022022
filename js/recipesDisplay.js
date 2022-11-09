@@ -1,5 +1,4 @@
 import recipes from './recipes.js'
-//import CustomSelect from './dropdownMenu.js'
 
 let result = recipes
 
@@ -266,12 +265,6 @@ let displayUstensilTags = () => {
     }
   }
 }
-
-/*
-  let displayDropdown = () => {
-
-  }
-*/
 
 displayMain(recipes)
 filters(recipes)
