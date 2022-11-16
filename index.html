@@ -22,8 +22,8 @@
         <h1>Les petits plats</h1>
     </header>
     <main>
-        <div class="searchingArea">
-            <input name="searchengine" type="text" id="searchengine" placeholder="Rechercher une recette">
+        <div class="search">
+            <input name="searchBar" type="text" maxlength="50" id="searchBar" placeholder="Rechercher une recette">
         </div>
         <div class="filterParams" id="filterParams"></div>
         <div class="filters">
@@ -37,11 +37,11 @@
                 <option value="" hidden selected label ="Ustensiles">Ustensiles</option>
             </select>
         </div>
-        <div class="displayRecipes"></div>
+        <div class="cards"></div>
     </main>
     <footer>
 
     </footer>
-    <script type="module" src="./js/recipesDisplay.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

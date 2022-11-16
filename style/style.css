@@ -31,7 +31,7 @@ header h1{
 /*======= MAIN =======*/
 
 /*======= SEARCHING AREA =======*/
-#searchengine{
+#searchBar{
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -39,7 +39,7 @@ header h1{
     text-indent: 5px;
     padding-left: 15px; 
 }
-#searchengine, button.launchSearch{
+#searchBar, button.launchSearch{
     height: 69px;
     border-radius: 5px;
     background: #E7E7E7 url(../img/searchIcon.svg) right no-repeat;
@@ -85,7 +85,7 @@ header h1{
 
 /*===== CARDS =====*/
 
-.displayRecipes{
+.cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 50px;
