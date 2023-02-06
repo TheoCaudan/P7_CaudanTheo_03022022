@@ -280,8 +280,8 @@ let eventHandler = () => {
   }
 };
 
-let searchResults = () => {
-  let val = searchBar.value;
+let searchResults = (e) => {
+  let val = e.target.value;
   if (val.length > 2) {
     for (let i = 0; i < cards.length; i++) {
       if (cards[i].textContent.toLowerCase().includes(val.toLowerCase())) {
