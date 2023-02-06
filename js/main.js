@@ -18,22 +18,22 @@ const filterParams = document.querySelector("#filterParams");
 /* const activeFilters = document.querySelectorAll("#filterParams").children; */
 
 const displayArea = document.querySelector(".cards");
-const searchBar = document.getElementById("searchBar");
-const cards = document.querySelectorAll(".gridRecipesWrapper");
+const searchBar = document.querySelector("#searchBar");
+const cards = document.querySelectorAll(".recipesWrapper");
 
 let displayMain = (arr) => {
-  displayArea.innerHTML = "";
+  displayArea.SetHTML = "";
   for (let i = 0; i < arr.length; i++) {
     const recipesCard = document.createElement("article");
-    recipesCard.className = "gridRecipesWrapper";
+    recipesCard.className = "recipesWrapper recipesWrapperEnabled";
     recipesCard.ariaLabel = "Contenu Principal";
-    recipesCard.id = "gridRecipesWrapper" + arr[i].id;
+    recipesCard.id = "recipesWrapper" + arr[i].id;
 
     displayArea.append(recipesCard);
 
     const recipe = document.createElement("div");
-    recipe.className = "gridRecipeId";
-    recipe.id = "gridRecipe" + arr[i].id;
+    recipe.className = "recipe";
+    recipe.id = "recipe" + arr[i].id;
 
     recipesCard.append(recipe);
 
@@ -85,7 +85,7 @@ let displayMain = (arr) => {
     const recipeTime = document.createElement("span");
     recipeTime.className = "recipeTime";
 
-    recipeTime.innerHTML = "" + arr[i].time;
+    recipeTime.SetHTML = "" + arr[i].time;
     recipeTime.id = "recipeTime" + arr[i].id;
 
     recipe.append(recipeTime);
@@ -117,7 +117,7 @@ let getFilters = (arr) => {
 let displayFilters = () => {
   let ingredientsArray = Array.from(ingredientsSet);
 
-  ingredientsFilter.innerHTML =
+  ingredientsFilter.SetHTML =
     '<option value="" hidden selected>Ingredients</option>';
   ingredientsFilter.onclick = () => {
     result = filterIngredient(ingredientsFilter.value, result);
@@ -140,7 +140,7 @@ let displayFilters = () => {
 
   let appliancesArray = Array.from(appliancesSet);
 
-  appliancesFilter.innerHTML =
+  appliancesFilter.SetHTML =
     '<option value="" hidden selected>Appareils</option>';
   appliancesFilter.onclick = () => {
     result = filterAppliance(appliancesFilter.value, result);
@@ -163,7 +163,7 @@ let displayFilters = () => {
 
   let ustensilsArray = Array.from(ustensilsSet);
 
-  ustensilsFilter.innerHTML =
+  ustensilsFilter.SetHTML =
     '<option value="" hidden selected>Ustensiles</option>';
   ustensilsFilter.onclick = () => {
     result = filterUstensil(ustensilsFilter.value, result);
@@ -280,14 +280,21 @@ let eventHandler = () => {
   }
 };
 
-let searchResults = (key, element) => {
-  if (key.length > 2) {
-    for (let i = 0; i < element.length; i++) {
-      if (element[i].textContent.toLowerCase().includes(key)) {
-        element[i].style.display = "block";
+let searchResults = () => {
+  let val = searchBar.value;
+  if (val.length > 2) {
+    for (let i = 0; i < cards.length; i++) {
+      if (cards[i].textContent.toLowerCase().includes(val.toLowerCase())) {
+        if (cards[i].className == 'recipesWrapper recipesWrapperDisabled') {
+          cards[i].className = 'recipesWrapper recipesWrapperEnabled';
+        }
       } else {
-        element[i].style.display = "none";
+        cards[i].className = 'recipesWrapper recipesWrapperDisabled'; 
       }
+    }
+  } else if (val.length === 0) {
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].className = 'recipesWrapper recipesWrapperEnabled';
     }
   }
 };
@@ -299,29 +306,18 @@ let filterOptions = (arr) => {
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].appliance.toLowerCase().includes(appliancesFilter[m].innerText)) {
           arrFiltered.push(arr[i]);
-        } else
-          for (let j = 0; j < arr[i].ingredients.length; j++) {
-            if (
-              arr[i].ingredients[j].ingredient
-                .toLowerCase()
-                .includes(ingredientsFilter[m].innerText)
-            ) {
+        } else for (let j = 0; j < arr[i].ingredients.length; j++) {
+            if (arr[i].ingredients[j].ingredient.toLowerCase().includes(ingredientsFilter[m].innerText)            ) {
               arrFiltered.push(arr[i]);
-            } else
-                if (
-                  arr[i].ustensils
-                    .toLowerCase()
-                    .includes(ustensilsFilter[m].innerText)
-                ) {
+          } else if (arr[i].ustensils.toLowerCase().includes(ustensilsFilter[m].innerText)) {
                   arrFiltered.push(arr[i]);
-                }
           }
+        }
       }
     }
-  } else
-    for (let i = 0; i < arr.length; i++) {
+  } else for (let i = 0; i < arr.length; i++) {
       arrFiltered.push(arr[i]);
-  }
+    }
   cards.remove();
   displayMain(arrFiltered);
 }; 
@@ -344,7 +340,4 @@ let currentRecipeTracker = (key) => {
 displayMain(initArray);
 getFilters(initArray);
 displayFilters();
-searchBar.onchange = (e) => {
-  const val = e.target.value;
-  searchResults(val, cards);
-};
+searchBar.addEventListener("change", searchResults);
