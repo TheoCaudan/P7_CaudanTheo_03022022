@@ -285,14 +285,13 @@ let searchResults = (e) => {
   if (val.length > 2) {
     for (let i = 0; i < cards.length; i++) {
       if (cards[i].textContent.toLowerCase().includes(val.toLowerCase())) {
-        if (cards[i].className == 'recipesWrapper recipesWrapperDisabled') {
           cards[i].className = 'recipesWrapper recipesWrapperEnabled';
-        }
       } else {
         cards[i].className = 'recipesWrapper recipesWrapperDisabled'; 
-      }
     }
-  } else if (val.length === 0) {
+    } 
+  }
+  else if (val.length === 0) {
     for (let i = 0; i < cards.length; i++) {
       cards[i].className = 'recipesWrapper recipesWrapperEnabled';
     }
@@ -341,3 +340,4 @@ displayMain(initArray);
 getFilters(initArray);
 displayFilters();
 searchBar.addEventListener("change", searchResults);
+console.log(searchBar.value);
