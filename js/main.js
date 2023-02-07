@@ -283,7 +283,7 @@ let eventHandler = () => {
 let searchResults = (e) => {
   let val = e.target.value;
   if (val.length > 2) {
-    for (let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) { // <-- Problem here
       if (cards[i].textContent.toLowerCase().includes(val.toLowerCase())) {
           cards[i].className = 'recipesWrapper recipesWrapperEnabled';
       } else {
