@@ -17,7 +17,7 @@ const ustensilsFilter = document.querySelector("#ustensilsList");
 const filterParams = document.querySelector("#filterParams");
 /* const activeFilters = document.querySelectorAll("#filterParams").children; */
 
-const displayArea = document.querySelector(".cards");
+const displayArea = document.querySelector(".displayArea");
 const searchBar = document.querySelector("#searchBar");
 const cards = document.querySelectorAll(".recipesWrapper");
 
@@ -282,7 +282,10 @@ let eventHandler = () => {
 
 let searchResults = (e) => {
   let val = e.target.value;
+  console.log(val);
   if (val.length > 2) {
+    console.log(val, val.length);
+    console.log(cards, typeof(cards));
     for (let i = 0; i < cards.length; i++) { // <-- Problem here
       if (cards[i].textContent.toLowerCase().includes(val.toLowerCase())) {
           cards[i].className = 'recipesWrapper recipesWrapperEnabled';
